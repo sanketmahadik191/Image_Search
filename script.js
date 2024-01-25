@@ -14,7 +14,6 @@ let page = 1;
 const fetchImages = async(text, pageNo) => {
     if (page === 1) {
         imageContainer.innerHTML = "";
-
     }
     const url = `https://api.unsplash.com/search/photos?query=${text}&per_page=50&page=${pageNo}&client_id=${accessKey}`;
 
@@ -47,7 +46,9 @@ const fetchImages = async(text, pageNo) => {
         imageContainer.appendChild(imageElemnt);
         count++;
     })
-
+    if (count === 0) {
+        loadMoreBtn.innerText = "No images Search Again..."
+    }
     let ans = count * data.total_pages;
     available.innerText = "Available Images-" + ans;
     count = 0;
